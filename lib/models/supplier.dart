@@ -1,3 +1,9 @@
+import 'dart:convert';
+
+List<Supplier> supplierFromJson(String str) => List<Supplier>.from(json.decode(str).map((x) => Supplier.fromJson(x)));
+
+String supplierToJson(List<Supplier> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
 class Supplier {
   int supplierId;
   String supplierName;
