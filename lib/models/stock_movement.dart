@@ -1,3 +1,9 @@
+import 'dart:convert';
+
+List<StockMovement> stockMovementFromJson(String str) => List<StockMovement>.from(json.decode(str).map((x) => StockMovement.fromJson(x)));
+
+String stockMovementToJson(List<StockMovement> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
 class StockMovement {
   int movementId;
   int productId;
