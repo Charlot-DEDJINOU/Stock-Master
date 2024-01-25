@@ -16,13 +16,13 @@ class AuthenticatedUser {
   });
 
   factory AuthenticatedUser.fromJson(Map<String, dynamic> json) => AuthenticatedUser(
-    accessToken: json["accessToken"],
+    accessToken: json["access_token"],
     authentication: json["authentication"] == null ? null : Authentication.fromJson(json["authentication"]),
     user: json["user"] == null ? null : User.fromJson(json["user"]),
   );
 
   Map<String, dynamic> toJson() => {
-    "accessToken": accessToken,
+    "access_token": accessToken,
     "authentication": authentication?.toJson(),
     "user": user?.toJson(),
   };
@@ -81,40 +81,32 @@ class Payload {
 }
 class User {
   int userId;
-  String username;
+  String fullname;
   String password;
-  String fullName;
   String email;
-  String role;
 
   User({
     required this.userId,
-    required this.username,
+    required this.fullname,
     required this.password,
-    required this.fullName,
     required this.email,
-    required this.role,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       userId: json['user_id'],
-      username: json['username'],
+      fullname: json['full_name'],
       password: json['password'],
-      fullName: json['full_name'],
       email: json['email'],
-      role: json['role'],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'user_id': userId,
-      'username': username,
+      'full_name': fullname,
       'password': password,
-      'full_name': fullName,
       'email': email,
-      'role': role,
     };
   }
   
