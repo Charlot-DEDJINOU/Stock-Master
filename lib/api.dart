@@ -4,7 +4,7 @@ class Api {
 
   static api() {
     final options = BaseOptions(
-      baseUrl: 'http://172.20.10.4:3030/',
+      baseUrl: 'http://192.168.1.88:8000/',
       connectTimeout: const Duration(seconds: 30),
       receiveTimeout: const Duration(seconds: 30),
     );
