@@ -8,7 +8,7 @@ class Product {
   int productId;
   String productName;
   String productDescription;
-  int categoryId;
+  String categoryId;
   double purchasePrice;
   double sellingPrice;
   int quantityInStock;
