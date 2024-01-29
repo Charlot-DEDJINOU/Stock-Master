@@ -1,8 +1,10 @@
 import 'dart:convert';
 
-AuthenticatedUser authenticatedUserFromJson(String str) => AuthenticatedUser.fromJson(json.decode(str));
+AuthenticatedUser authenticatedUserFromJson(String str) =>
+    AuthenticatedUser.fromJson(json.decode(str));
 
-String authenticatedUserToJson(AuthenticatedUser data) => json.encode(data.toJson());
+String authenticatedUserToJson(AuthenticatedUser data) =>
+    json.encode(data.toJson());
 
 class AuthenticatedUser {
   String? accessToken;
@@ -15,17 +17,20 @@ class AuthenticatedUser {
     this.user,
   });
 
-  factory AuthenticatedUser.fromJson(Map<String, dynamic> json) => AuthenticatedUser(
-    accessToken: json["access_token"],
-    authentication: json["authentication"] == null ? null : Authentication.fromJson(json["authentication"]),
-    user: json["user"] == null ? null : User.fromJson(json["user"]),
-  );
+  factory AuthenticatedUser.fromJson(Map<String, dynamic> json) =>
+      AuthenticatedUser(
+        accessToken: json["access_token"],
+        authentication: json["authentication"] == null
+            ? null
+            : Authentication.fromJson(json["authentication"]),
+        user: json["user"] == null ? null : User.fromJson(json["user"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "access_token": accessToken,
-    "authentication": authentication?.toJson(),
-    "user": user?.toJson(),
-  };
+        "access_token": accessToken,
+        "authentication": authentication?.toJson(),
+        "user": user?.toJson(),
+      };
 }
 
 class Authentication {
@@ -38,14 +43,15 @@ class Authentication {
   });
 
   factory Authentication.fromJson(Map<String, dynamic> json) => Authentication(
-    strategy: json["strategy"],
-    payload: json["payload"] == null ? null : Payload.fromJson(json["payload"]),
-  );
+        strategy: json["strategy"],
+        payload:
+            json["payload"] == null ? null : Payload.fromJson(json["payload"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "strategy": strategy,
-    "payload": payload?.toJson(),
-  };
+        "strategy": strategy,
+        "payload": payload?.toJson(),
+      };
 }
 
 class Payload {
@@ -64,29 +70,32 @@ class Payload {
   });
 
   factory Payload.fromJson(Map<String, dynamic> json) => Payload(
-    iat: json["iat"],
-    exp: json["exp"],
-    aud: json["aud"],
-    sub: json["sub"],
-    jti: json["jti"],
-  );
+        iat: json["iat"],
+        exp: json["exp"],
+        aud: json["aud"],
+        sub: json["sub"],
+        jti: json["jti"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "iat": iat,
-    "exp": exp,
-    "aud": aud,
-    "sub": sub,
-    "jti": jti,
-  };
+        "iat": iat,
+        "exp": exp,
+        "aud": aud,
+        "sub": sub,
+        "jti": jti,
+      };
 }
+
 class User {
   int userId;
+  String username;
   String fullname;
   String password;
   String email;
 
   User({
     required this.userId,
+    required this.username,
     required this.fullname,
     required this.password,
     required this.email,
@@ -95,6 +104,7 @@ class User {
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       userId: json['user_id'],
+      username: json['username'],
       fullname: json['full_name'],
       password: json['password'],
       email: json['email'],
@@ -104,10 +114,10 @@ class User {
   Map<String, dynamic> toJson() {
     return {
       'user_id': userId,
+      'username' : username,
       'full_name': fullname,
       'password': password,
       'email': email,
     };
   }
-  
 }
