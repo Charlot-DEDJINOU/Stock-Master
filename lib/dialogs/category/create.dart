@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:stock_master/screens/category/caterogies.dart';
+import 'package:stock_master/services/category.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:dio/dio.dart';
 
 class CreateCategory extends StatefulWidget {
   const CreateCategory({super.key});
@@ -8,7 +12,28 @@ class CreateCategory extends StatefulWidget {
 }
 
 class _CreateCategoryState extends State<CreateCategory> {
- String categoryName = '';
+  String categoryName = '';
+  CategoryService categoryService = CategoryService();
+
+  create(data) async {
+    try {
+      var response = await categoryService.create(data);
+      print(response);
+      Fluttertoast.showToast(msg: "Categorie créé avec succès");
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const ShowCaterories()));
+    } on DioException catch (e) {
+      Navigator.of(context).pop();
+      Fluttertoast.showToast(msg: "Erreur lors de l'ajout");
+      if (e.response != null) {
+        print(e.response!.data);
+      } else {
+        print(e.message);
+      }
+    } finally {
+         Navigator.of(context).pop();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +56,10 @@ class _CreateCategoryState extends State<CreateCategory> {
         ),
         TextButton(
           child: const Text('Ajouter'),
-          onPressed: () {
-            // Ajouter la catégorie avec le nom `categoryName`
-            Navigator.of(context).pop();
+          onPressed: () async {
+            await create({
+              'category_name': categoryName,
+            });
           },
         ),
       ],

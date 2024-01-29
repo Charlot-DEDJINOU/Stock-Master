@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:stock_master/models/category.dart';
-
+import 'package:stock_master/screens/category/caterogies.dart';
+import 'package:stock_master/services/category.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:dio/dio.dart';
 class UpdateCategory extends StatefulWidget {
   final Category category;
 
@@ -12,12 +15,33 @@ class UpdateCategory extends StatefulWidget {
 
 class _UpdateCategoryState extends State<UpdateCategory> {
   late TextEditingController _textEditingController;
+  CategoryService categoryService = CategoryService();
 
   @override
   void initState() {
     super.initState();
     _textEditingController =
         TextEditingController(text: widget.category.categoryName);
+  }
+
+  update(data) async {
+    try {
+      var response = await categoryService.update(widget.category.categoryId.toString(), data);
+      print(response);
+      Fluttertoast.showToast(msg: "Categorie créé avec succès");
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const ShowCaterories()));
+    } on DioException catch (e) {
+      Navigator.of(context).pop();
+      Fluttertoast.showToast(msg: "Erreur lors de l'ajout");
+      if (e.response != null) {
+        print(e.response!.data);
+      } else {
+        print(e.message);
+      }
+    } finally {
+         Navigator.of(context).pop();
+    }
   }
 
   @override
@@ -39,11 +63,12 @@ class _UpdateCategoryState extends State<UpdateCategory> {
         ),
         TextButton(
           child: const Text('Modifier'),
-          onPressed: () {
+          onPressed: () async {
             String updatedCategoryName = _textEditingController.text;
             _textEditingController.text = '';
-            print(updatedCategoryName);
-            Navigator.of(context).pop();
+            await update({
+              'category_name': updatedCategoryName
+            });
           },
         ),
       ],

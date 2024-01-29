@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stock_master/dialogs/category/create.dart';
+import 'package:stock_master/dialogs/category/delete.dart';
 import 'package:stock_master/dialogs/category/update.dart';
 import 'package:stock_master/models/category.dart';
 import 'package:stock_master/layout/appbar.dart';
@@ -48,7 +49,7 @@ class _ShowCateroriesState extends State<ShowCaterories> {
                   IconButton(
                     icon: const Icon(Icons.delete),
                     onPressed: () {
-                      // Action à effectuer lors du clic sur le bouton "Supprimer"
+                       _showDeleteCategoryDialog(context, category.categoryId);
                     },
                   ),
                 ],
@@ -85,4 +86,15 @@ class _ShowCateroriesState extends State<ShowCaterories> {
       },
     );
   }
+
+ Future<void> _showDeleteCategoryDialog(
+      BuildContext context, int id) async {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return DeleteCategory(categoryId: id);
+      },
+    );
+  }
+
 }

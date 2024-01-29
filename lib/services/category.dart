@@ -4,10 +4,9 @@ import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CategoryService {
-
   Dio api = Api.api();
 
-  Future<Category> create (Map<String, dynamic> data) async{
+  Future<Category> create(Map<String, dynamic> data) async {
     final pref = await SharedPreferences.getInstance();
     String token = pref.getString("token") ?? "";
 
@@ -20,8 +19,7 @@ class CategoryService {
     return Category.fromJson(response.data);
   }
 
-  Future<Category> get (String id) async{
-
+  Future<Category> get(String id) async {
     final pref = await SharedPreferences.getInstance();
     String token = pref.getString("token") ?? "";
 
@@ -34,8 +32,7 @@ class CategoryService {
     return Category.fromJson(response.data);
   }
 
-  Future<List<Category>> getAll () async{
-
+  Future<List<Category>> getAll() async {
     final pref = await SharedPreferences.getInstance();
     String token = pref.getString("token") ?? "";
 
@@ -45,7 +42,9 @@ class CategoryService {
 
     final response = await api.get('categorys');
 
-    return (response.data['data'] as List).map((e) => Category.fromJson(e)).toList();
+    return (response.data['data'] as List)
+        .map((e) => Category.fromJson(e))
+        .toList();
   }
 
   Future<Category> update(String id, Map<String, dynamic> data) async {
@@ -71,5 +70,4 @@ class CategoryService {
 
     await api.delete('category/$id');
   }
-  
 }
