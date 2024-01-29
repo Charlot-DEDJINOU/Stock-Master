@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:stock_master/screens/category/caterogies.dart';
+import 'package:stock_master/screens/category/categories.dart';
+import 'package:stock_master/screens/customer/customers.dart';
 
 class CustomAppDrawer extends StatefulWidget {
   const CustomAppDrawer({super.key});
@@ -10,12 +11,12 @@ class CustomAppDrawer extends StatefulWidget {
 }
 
 class _CustomAppDrawerState extends State<CustomAppDrawer> {
-  String fullname = "";
+  String username = "";
 
   _loadInformation() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-      fullname = prefs.getString("fullname") ?? "";
+      username = prefs.getString("username") ?? "User";
     });
   }
 
@@ -37,7 +38,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
               color: Color(0xFF02BB02),
             ),
             child: Center(
-              child: Text(fullname == "" ? "User" : fullname, style: const TextStyle(color: Colors.white, fontSize: 30)),
+              child: Text(username, style: const TextStyle(color: Colors.white, fontSize: 30)),
             ),
           ),
           ListTile(
@@ -49,7 +50,9 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
               ],
             ),
             onTap: () {
-              Navigator.pop(context);
+               Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => const ShowCustomers(),
+              ));
             },
           ),
           ListTile(
@@ -74,9 +77,8 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
             ),
             onTap: () {
               Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => const ShowCaterories(),
+                builder: (context) => const ShowCategories(),
               ));
-              Navigator.pop(context);
             },
           ),
           ListTile(
