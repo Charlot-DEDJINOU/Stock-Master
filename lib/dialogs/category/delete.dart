@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:stock_master/screens/category/caterogies.dart';
+import 'package:stock_master/layout/handle_unauthorized_error.dart';
+import 'package:stock_master/layout/toast.dart';
+import 'package:stock_master/screens/category/categories.dart';
 import 'package:stock_master/services/category.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:dio/dio.dart';
 class DeleteCategory extends StatefulWidget {
   final int categoryId;
@@ -19,19 +20,20 @@ class _DeleteCategoryState extends State<DeleteCategory> {
   delete() async {
     try {
       await categoryService.delete(widget.categoryId.toString());
-      Fluttertoast.showToast(msg: "Categorie supprimé avec succès");
+      showToast("Suppression effectué avec succès");
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const ShowCaterories()));
+          MaterialPageRoute(builder: (context) => const ShowCategories()));
     } on DioException catch (e) {
-      Navigator.of(context).pop();
-      Fluttertoast.showToast(msg: "Erreur lors de la supression");
-      if (e.response != null) {
+      print(e);
+      if (e.response!.statusCode == 401) {
+        handleUnauthorizedError(context);
+      } else if (e.response != null) {
+        showToast("Une erreur est intervenue");
         print(e.response!.data);
       } else {
+        showToast("Une erreur est intervenue");
         print(e.message);
       }
-    } finally {
-         Navigator.of(context).pop();
     }
   }
 
