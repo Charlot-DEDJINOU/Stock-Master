@@ -14,7 +14,7 @@ class StockmovementServive {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    final response = await api.post('stock_movement', data: data);
+    final response = await api.post('stock_movements', data: data);
 
     return StockMovement.fromJson(response.data);
   }
@@ -27,7 +27,7 @@ class StockmovementServive {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    final response = await api.get('stock_movement/$id');
+    final response = await api.get('stock_movements/$id');
 
     return StockMovement.fromJson(response.data);
   }
@@ -42,7 +42,7 @@ class StockmovementServive {
 
     final response = await api.get('stock_movements');
 
-    return (response.data['data'] as List)
+    return (response.data as List)
         .map((e) => StockMovement.fromJson(e))
         .toList();
   }
@@ -55,7 +55,7 @@ class StockmovementServive {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    final response = await api.put('stock_movement/$id', data: data);
+    final response = await api.put('stock_movements/$id', data: data);
 
     return StockMovement.fromJson(response.data);
   }
@@ -68,7 +68,7 @@ class StockmovementServive {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    await api.delete('stock_movement/$id');
+    await api.delete('stock_movements/$id');
   }
   
 }
