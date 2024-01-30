@@ -14,7 +14,7 @@ class ProductServive {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    final response = await api.post('product', data: data);
+    final response = await api.post('products', data: data);
 
     return Product.fromJson(response.data);
   }
@@ -27,7 +27,7 @@ class ProductServive {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    final response = await api.get('product/$id');
+    final response = await api.get('products/$id');
 
     return Product.fromJson(response.data);
   }
@@ -42,7 +42,7 @@ class ProductServive {
 
     final response = await api.get('products');
 
-    return (response.data['data'] as List)
+    return (response.data as List)
         .map((e) => Product.fromJson(e))
         .toList();
   }
@@ -55,7 +55,7 @@ class ProductServive {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    final response = await api.put('product/$id', data: data);
+    final response = await api.put('products/$id', data: data);
 
     return Product.fromJson(response.data);
   }
@@ -68,7 +68,7 @@ class ProductServive {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    await api.delete('product/$id');
+    await api.delete('products/$id');
   }
   
 }

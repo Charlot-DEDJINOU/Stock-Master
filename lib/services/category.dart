@@ -14,7 +14,7 @@ class CategoryService {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    final response = await api.post('category', data: data);
+    final response = await api.post('categories', data: data);
 
     return Category.fromJson(response.data);
   }
@@ -27,7 +27,7 @@ class CategoryService {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    final response = await api.get('category/$id');
+    final response = await api.get('categories/$id');
 
     return Category.fromJson(response.data);
   }
@@ -40,11 +40,9 @@ class CategoryService {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    final response = await api.get('categorys');
+    final response = await api.get('categories');
 
-    return (response.data['data'] as List)
-        .map((e) => Category.fromJson(e))
-        .toList();
+    return (response.data as List).map((e) => Category.fromJson(e)).toList();
   }
 
   Future<Category> update(String id, Map<String, dynamic> data) async {
@@ -55,7 +53,7 @@ class CategoryService {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    final response = await api.put('category/$id', data: data);
+    final response = await api.put('categories/$id', data: data);
 
     return Category.fromJson(response.data);
   }
@@ -68,6 +66,6 @@ class CategoryService {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    await api.delete('category/$id');
+    await api.delete('categories/$id');
   }
 }

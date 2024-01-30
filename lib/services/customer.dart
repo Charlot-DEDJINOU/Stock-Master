@@ -14,7 +14,7 @@ class CustomerServive {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    final response = await api.post('customer', data: data);
+    final response = await api.post('customers', data: data);
 
     return Customer.fromJson(response.data);
   }
@@ -27,7 +27,7 @@ class CustomerServive {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    final response = await api.get('customer/$id');
+    final response = await api.get('customers/$id');
 
     return Customer.fromJson(response.data);
   }
@@ -42,9 +42,7 @@ class CustomerServive {
 
     final response = await api.get('customers');
 
-    return (response.data['data'] as List)
-        .map((e) => Customer.fromJson(e))
-        .toList();
+    return (response.data as List).map((e) => Customer.fromJson(e)).toList();
   }
 
   Future<Customer> update(String id, Map<String, dynamic> data) async {
@@ -55,7 +53,7 @@ class CustomerServive {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    final response = await api.put('customer/$id', data: data);
+    final response = await api.put('customers/$id', data: data);
 
     return Customer.fromJson(response.data);
   }
@@ -68,7 +66,6 @@ class CustomerServive {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    await api.delete('customer/$id');
+    await api.delete('customers/$id');
   }
-  
 }
