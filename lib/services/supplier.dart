@@ -14,7 +14,7 @@ class SupplierServive {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    final response = await api.post('supplier', data: data);
+    final response = await api.post('suppliers', data: data);
 
     return Supplier.fromJson(response.data);
   }
@@ -27,7 +27,7 @@ class SupplierServive {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    final response = await api.get('supplier/$id');
+    final response = await api.get('suppliers/$id');
 
     return Supplier.fromJson(response.data);
   }
@@ -42,7 +42,7 @@ class SupplierServive {
 
     final response = await api.get('suppliers');
 
-    return (response.data['data'] as List)
+    return (response.data as List)
         .map((e) => Supplier.fromJson(e))
         .toList();
   }
@@ -55,7 +55,7 @@ class SupplierServive {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    final response = await api.put('supplier/$id', data: data);
+    final response = await api.put('suppliers/$id', data: data);
 
     return Supplier.fromJson(response.data);
   }
@@ -68,7 +68,7 @@ class SupplierServive {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    await api.delete('supplier/$id');
+    await api.delete('suppliers/$id');
   }
   
 }
