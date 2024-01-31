@@ -14,7 +14,7 @@ class SupplierServive {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    final response = await api.post('suppliers', data: data);
+    final response = await api.post('suppliers/', data: data);
 
     return Supplier.fromJson(response.data);
   }
@@ -40,7 +40,7 @@ class SupplierServive {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    final response = await api.get('suppliers');
+    final response = await api.get('suppliers/');
 
     return (response.data as List)
         .map((e) => Supplier.fromJson(e))

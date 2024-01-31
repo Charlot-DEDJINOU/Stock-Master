@@ -6,10 +6,10 @@ import 'package:stock_master/screens/login.dart';
 void handleUnauthorizedError(BuildContext context) async {
   final pref = await SharedPreferences.getInstance();
   pref.setString("token", "");
-  
-  showToast("Veuillez vous authentifier");
 
   Navigator.of(context).push(
     MaterialPageRoute(builder: (context) => const Login()),
   );
+
+  showToast("Veuillez vous authentifier");
 }

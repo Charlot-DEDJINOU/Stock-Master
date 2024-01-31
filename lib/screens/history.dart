@@ -22,7 +22,7 @@ class _HistoryState extends State<History> {
   bool isLoading = true;
 
   StockmovementServive stockmovementServive = StockmovementServive();
-  ProductServive productServive = ProductServive();
+  ProductService productServive = ProductService();
 
   allStockMovement() async {
     try {

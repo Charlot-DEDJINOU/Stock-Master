@@ -28,6 +28,8 @@ class _SettingState extends State<Setting> {
     SharedPreferences pref = await SharedPreferences.getInstance();
     userId = pref.getString("id") ?? "";
 
+    print(userId);
+    
     user = await userService.get(userId);
     userEmail = user.email;
     userName = user.username;
@@ -49,39 +51,34 @@ class _SettingState extends State<Setting> {
       appBar: const CustomAppBar(title: "Paramètre"),
       bottomNavigationBar: const CustomBottomNavigationBar(index: 0),
       drawer: const CustomAppDrawer(),
-      body: !isLoading 
-        ? ListView(
-          padding: const EdgeInsets.all(16.0),
-          children: <Widget>[
-            ListTile(
-              title: const Text('Nom'),
-              subtitle: Text(userName),
-            ),
-            const Divider(),
-            ListTile(
-              title: const Text('Email'),
-              subtitle: Text(userEmail),
-            ),
-            const Divider(),
-            ListTile(
-                title: const Text('Changer de mot de passe'), 
-                onTap: () => {
-                    _showUpdateUserPasswordDialog(context, user.userId.toString())
-                }
-              ),
-            const Divider(),
-            ListTile(
-              title: const Text('Modifier le profil'), 
-              onTap: () => {
-                  _showUpdateUserDialog(context, user)
-              }
-            ),
-            const Divider(),
-          ],
-        ) 
-        : const Center(
-                child: CircularProgressIndicator(color: Colors.brown)
-        ),
+      body: !isLoading
+          ? ListView(
+              padding: const EdgeInsets.all(16.0),
+              children: <Widget>[
+                ListTile(
+                  title: const Text('Nom'),
+                  subtitle: Text(userName),
+                ),
+                const Divider(),
+                ListTile(
+                  title: const Text('Email'),
+                  subtitle: Text(userEmail),
+                ),
+                const Divider(),
+                ListTile(
+                    title: const Text('Changer de mot de passe'),
+                    onTap: () => {
+                          _showUpdateUserPasswordDialog(
+                              context, user.userId.toString())
+                        }),
+                const Divider(),
+                ListTile(
+                    title: const Text('Modifier le profil'),
+                    onTap: () => {_showUpdateUserDialog(context, user)}),
+                const Divider(),
+              ],
+            )
+          : const Center(child: CircularProgressIndicator(color: Colors.brown)),
     );
   }
 
@@ -94,7 +91,8 @@ class _SettingState extends State<Setting> {
     );
   }
 
-   Future<void> _showUpdateUserPasswordDialog(BuildContext context, String id) async {
+  Future<void> _showUpdateUserPasswordDialog(
+      BuildContext context, String id) async {
     showDialog(
       context: context,
       builder: (BuildContext context) {

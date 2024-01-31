@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:stock_master/screens/prevision.dart';
 import 'package:stock_master/screens/achat/create.dart';
 import 'package:stock_master/screens/category/categories.dart';
 import 'package:stock_master/layout/appbar.dart';
 import 'package:stock_master/layout/drawer.dart';
 import 'package:stock_master/layout/bottom_navigation_bar.dart';
 import 'package:stock_master/screens/customer/customers.dart';
+import 'package:stock_master/screens/order/orders.dart';
+import 'package:stock_master/screens/product/products.dart';
 import 'package:stock_master/screens/supplier/suppliers.dart';
 import 'package:stock_master/screens/vente/create.dart';
 
@@ -27,7 +30,9 @@ class _HomeState extends State<Home> {
         crossAxisCount: 2,
         children: [
           _buildCard(Icons.inventory, 'Produits', true, () {
-            // Action à effectuer lors du clic sur le premier rectangle
+             Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const ShowProducts(),
+              ));
           }),
           _buildCard(Icons.category, 'Categories', false,  () {
               Navigator.of(context).push(MaterialPageRoute(
@@ -40,7 +45,9 @@ class _HomeState extends State<Home> {
               ));
           }),
            _buildCard(Icons.shopping_cart, 'Commandes', true, () {
-            // Action à effectuer lors du clic sur le deuxième rectangle
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const ShowOrders(),
+              ));
           }),
           _buildCard(Icons.business_center, 'Fournisseurs', true, () {
             Navigator.of(context).push(MaterialPageRoute(
@@ -58,7 +65,9 @@ class _HomeState extends State<Home> {
               ));
           }),
           _buildCard(Icons.timeline, 'Previsions', true, () {
-            // Action à effectuer lors du clic sur le quatrième rectangle
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const PrevisionScreen(),
+              ));
           }),
         ],
       ),

@@ -1,12 +1,12 @@
-import 'package:stock_master/models/customer.dart';
+import 'package:stock_master/models/order.dart';
 import 'package:stock_master/api.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class CustomerServive {
+class OrderService {
   Dio api = Api.api();
 
-  Future<Customer> create(Map<String, dynamic> data) async {
+  Future<Order> create(Map<String, dynamic> data) async {
     final pref = await SharedPreferences.getInstance();
     String token = pref.getString("token") ?? "";
 
@@ -14,13 +14,12 @@ class CustomerServive {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    final response = await api.post('customers/', data: data);
-    print(response.isRedirect);
-    
-    return Customer.fromJson(response.data);
+    final response = await api.post('orders/', data: data);
+
+    return Order.fromJson(response.data);
   }
 
-  Future<Customer> get(String id) async {
+  Future<Order> get(int id) async {
     final pref = await SharedPreferences.getInstance();
     String token = pref.getString("token") ?? "";
 
@@ -28,12 +27,12 @@ class CustomerServive {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    final response = await api.get('customers/$id');
+    final response = await api.get('orders/$id');
 
-    return Customer.fromJson(response.data);
+    return Order.fromJson(response.data);
   }
 
-  Future<List<Customer>> getAll() async {
+  Future<List<Order>> getAll() async {
     final pref = await SharedPreferences.getInstance();
     String token = pref.getString("token") ?? "";
 
@@ -41,12 +40,14 @@ class CustomerServive {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    final response = await api.get('customers/');
+    final response = await api.get('orders/');
 
-    return (response.data as List).map((e) => Customer.fromJson(e)).toList();
+    return (response.data as List)
+        .map((e) => Order.fromJson(e))
+        .toList();
   }
 
-  Future<Customer> update(String id, Map<String, dynamic> data) async {
+  Future<Order> update(int id, Map<String, dynamic> data) async {
     final pref = await SharedPreferences.getInstance();
     String token = pref.getString("token") ?? "";
 
@@ -54,12 +55,12 @@ class CustomerServive {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    final response = await api.put('customers/$id', data: data);
+    final response = await api.put('orders/$id', data: data);
 
-    return Customer.fromJson(response.data);
+    return Order.fromJson(response.data);
   }
 
-  Future<void> delete(String id) async {
+  Future<void> delete(int id) async {
     final pref = await SharedPreferences.getInstance();
     String token = pref.getString("token") ?? "";
 
@@ -67,6 +68,7 @@ class CustomerServive {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    await api.delete('customers/$id');
+    await api.delete('orders/$id');
   }
+  
 }

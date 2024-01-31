@@ -14,7 +14,8 @@ class CategoryService {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    final response = await api.post('categories', data: data);
+    final response = await api.post('categories/', data: data);
+    print(response.isRedirect);
 
     return Category.fromJson(response.data);
   }
@@ -40,7 +41,7 @@ class CategoryService {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    final response = await api.get('categories');
+    final response = await api.get('categories/');
 
     return (response.data as List).map((e) => Category.fromJson(e)).toList();
   }

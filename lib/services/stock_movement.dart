@@ -14,7 +14,7 @@ class StockmovementServive {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    final response = await api.post('stock_movements', data: data);
+    final response = await api.post('stock_movements/', data: data);
 
     return StockMovement.fromJson(response.data);
   }
@@ -40,7 +40,7 @@ class StockmovementServive {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    final response = await api.get('stock_movements');
+    final response = await api.get('stock_movements/');
 
     return (response.data as List)
         .map((e) => StockMovement.fromJson(e))

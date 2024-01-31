@@ -31,7 +31,7 @@ class UserService {
     return User.fromJson(response.data);
   }
 
-  Future<User> update(String id, Map<String, dynamic> data) async {
+  Future<User> update(int id, Map<String, dynamic> data) async {
     final pref = await SharedPreferences.getInstance();
     String token = pref.getString("token") ?? "";
 
@@ -39,7 +39,7 @@ class UserService {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    final response = await api.put('users/$id');
+    final response = await api.put('users/$id', data: data);
 
     return User.fromJson(response.data);
   }
@@ -52,7 +52,7 @@ class UserService {
       api.options.headers['AUTHORIZATION'] = 'Bearer $token';
     }
 
-    final response = await api.post('password');
+    final response = await api.post('password', data: data);
 
     return response.data;
   }

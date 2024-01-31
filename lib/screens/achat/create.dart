@@ -26,7 +26,7 @@ class _CreateBuyState extends State<CreateBuy> {
   bool isLoadingProduct = true;
   late List<Product> products = [];
 
-  ProductServive productServive = ProductServive();
+  ProductService productServive = ProductService();
   StockmovementServive stockmovementServive = StockmovementServive();
 
   create(data) async {
@@ -34,6 +34,7 @@ class _CreateBuyState extends State<CreateBuy> {
       isLoading = true;
     });
     try {
+      print(data);
       var response = await stockmovementServive.create(data);
       print(response);
       showToast("Achat enregistré avec succès");
@@ -89,7 +90,7 @@ class _CreateBuyState extends State<CreateBuy> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: "Enregistrer un achat"),
+      appBar: const CustomAppBar(title: "Achat"),
       drawer: const CustomAppDrawer(),
       bottomNavigationBar: const CustomBottomNavigationBar(index: 0),
       body: Center(

@@ -27,7 +27,7 @@ class _CreateSellState extends State<CreateSell> {
   bool isLoadingProduct = true;
   late List<Product> products = [];
 
-  ProductServive productServive = ProductServive();
+  ProductService productServive = ProductService();
   StockmovementServive stockmovementServive = StockmovementServive();
 
   create(data) async {
@@ -35,14 +35,15 @@ class _CreateSellState extends State<CreateSell> {
       isLoading = true;
     });
     try {
+      print(data);
       var response = await stockmovementServive.create(data);
       print(data);
       print(response);
       showToast("Vente enregistré avec succès");
       noteController.text = "";
       quantityController.text = "";
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (context) => const History()));
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const History()));
     } on DioException catch (e) {
       print(e);
       if (e.response!.statusCode == 401) {
@@ -95,7 +96,7 @@ class _CreateSellState extends State<CreateSell> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: "Enregistrer une vente"),
+      appBar: const CustomAppBar(title: "Vente"),
       drawer: const CustomAppDrawer(),
       bottomNavigationBar: const CustomBottomNavigationBar(index: 0),
       body: Center(

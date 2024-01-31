@@ -72,63 +72,72 @@ class _AboutState extends State<About> {
             const SizedBox(height: 10),
             const Center(
                 child: Text(
-                  "Charlot DEDJINOU (GL) 19665022",
+                  "Charlot DEDJINOU (GL) : Paricipation 31%",
                   style: TextStyle(
                   fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.green
                 ),
               ),
             ),
             const SizedBox(height: 10),
              const Center(
                 child: Text(
-                  "Mathias KINNINKPO (GL) 19665022",
+                  "Mathias KINNINKPO (GL) : Paricipation 31%",
                   style: TextStyle(
                   fontSize: 16,
+                   fontWeight: FontWeight.bold,
+                  color: Colors.green
                 ),
               ),
             ),
             const SizedBox(height: 10),
             const Center(
                 child: Text(
-                  "Rafiatou GNANFON (IM) 19665022",
+                  "Rafiatou GNANFON (IM) : Paricipation 15%",
                   style: TextStyle(
                   fontSize: 16,
+                   color: Colors.orange
                 ),
               ),
             ),
             const SizedBox(height: 10),
             const Center(
                 child: Text(
-                  "ALLOWANOU Blandine (IM) 19665022",
+                  "ALLOWANOU Blandine (IM) : Paricipation 15%",
                   style: TextStyle(
                   fontSize: 16,
+                  color: Colors.orange
                 ),
               ),
             ),
             const SizedBox(height: 10),
             const Center(
                 child: Text(
-                  "Thierry TCHONKLOE (GL) 19665022",
+                  "Thierry TCHONKLOE (GL) : Paricipation 3%",
                   style: TextStyle(
                   fontSize: 16,
+                   color: Colors.red
                 ),
               ),
             ),
             const SizedBox(height: 10),
             const Center(
                 child: Text(
-                  "Gabin BADJOGOUNME (GL) 19665022",
+                  "Gabin BADJOGOUNME (GL) : Paricipation 3%",
                   style: TextStyle(
                   fontSize: 16,
+                  color: Colors.red
                 ),
               ),
             ),
             const SizedBox(height: 10),
             const Center(
                 child: Text(
-                  "ODJO Urbain (GL) 19665022",
+                  "ODJO Urbain (GL) : Paricipation 2%",
                   style: TextStyle(
                   fontSize: 16,
+                  color: Colors.red
                 ),
               ),
             ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:stock_master/screens/Prevision.dart';
 import 'package:stock_master/screens/history.dart';
 import 'package:stock_master/screens/home.dart';
+import 'package:stock_master/screens/prevision.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   final int index;
@@ -32,7 +32,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
       }
       else if (index == 1) {
           Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const Prevision(),
+              builder: (context) => const PrevisionScreen(),
         ));
       }
       else {
