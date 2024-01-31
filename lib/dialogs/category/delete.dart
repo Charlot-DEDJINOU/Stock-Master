@@ -21,7 +21,7 @@ class _DeleteCategoryState extends State<DeleteCategory> {
     try {
       await categoryService.delete(widget.categoryId.toString());
       showToast("Suppression effectué avec succès");
-      Navigator.of(context).pushReplacement(
+      Navigator.of(context).push(
           MaterialPageRoute(builder: (context) => const ShowCategories()));
     } on DioException catch (e) {
       print(e);

@@ -32,7 +32,7 @@ class _UpdateCategoryState extends State<UpdateCategory> {
           widget.category.categoryId.toString(), data);
       print(response);
       showToast("Modification effectué avec succès");
-      Navigator.of(context).pushReplacement(
+      Navigator.of(context).push(
           MaterialPageRoute(builder: (context) => const ShowCategories()));
     } on DioException catch (e) {
       print(e);

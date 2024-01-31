@@ -21,7 +21,7 @@ class _CreateCategoryState extends State<CreateCategory> {
       var response = await categoryService.create(data);
       print(response);
       showToast("Categorie créé avec succès");
-      Navigator.of(context).pushReplacement(
+      Navigator.of(context).push(
           MaterialPageRoute(builder: (context) => const ShowCategories()));
     } on DioException catch (e) {
       print(e);
