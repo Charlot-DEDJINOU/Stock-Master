@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:stock_master/screens/category/caterogies.dart';
+import 'package:stock_master/screens/achat/create.dart';
+import 'package:stock_master/screens/category/categories.dart';
 import 'package:stock_master/layout/appbar.dart';
 import 'package:stock_master/layout/drawer.dart';
 import 'package:stock_master/layout/bottom_navigation_bar.dart';
+import 'package:stock_master/screens/customer/customers.dart';
+import 'package:stock_master/screens/supplier/suppliers.dart';
+import 'package:stock_master/screens/vente/create.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -15,6 +19,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: const CustomAppBar(title: 'Stock Master'),
       drawer: const CustomAppDrawer(),
       bottomNavigationBar: const CustomBottomNavigationBar(index: 0),
@@ -25,24 +30,32 @@ class _HomeState extends State<Home> {
             // Action à effectuer lors du clic sur le premier rectangle
           }),
           _buildCard(Icons.category, 'Categories', false,  () {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => const ShowCaterories(),
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const ShowCategories(),
               ));
           }),
           _buildCard(Icons.person, 'Clients', false, () {
-            // Action à effectuer lors du clic sur le troisième rectangle
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const ShowCustomers(),
+              ));
           }),
            _buildCard(Icons.shopping_cart, 'Commandes', true, () {
             // Action à effectuer lors du clic sur le deuxième rectangle
           }),
           _buildCard(Icons.business_center, 'Fournisseurs', true, () {
-            // Action à effectuer lors du clic sur le quatrième rectangle
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const ShowSuppliers(),
+              ));
           }),
           _buildCard(Icons.payment, 'Achats', false, () {
-            // Action à effectuer lors du clic sur le quatrième rectangle
+             Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const CreateBuy(),
+              ));
           }),
           _buildCard(Icons.attach_money, 'Ventes', false, () {
-            // Action à effectuer lors du clic sur le troisième rectangle
+             Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const CreateSell(),
+              ));
           }),
           _buildCard(Icons.timeline, 'Previsions', true, () {
             // Action à effectuer lors du clic sur le quatrième rectangle
