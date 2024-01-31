@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stock_master/layout/toast.dart';
 import 'package:stock_master/screens/home.dart';
 import 'package:stock_master/screens/register.dart';
 import 'package:stock_master/services/user.dart';
@@ -22,26 +22,40 @@ class _LoginState extends State<Login> {
   UserService userService = UserService();
 
   login(data) async {
-    isLoading = true;
+    setState(() {
+      isLoading = true;
+    });
 
     try {
       var response = await userService.login(data);
       final pref = await SharedPreferences.getInstance();
       pref.setString("token", response.accessToken!);
-      pref.setString("fullname", response.user!.fullname);
-      Fluttertoast.showToast(msg: "Utilisateur connecté avec succès");
+      pref.setString("username", response.user!.username);
+      pref.setString("id", response.user!.userId.toString());
+
       emailController.text = "";
       passwordController.text = "";
+      showToast("Utilisateur connecté avec succès");
+
       Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => const Home()));
     } on DioException catch (e) {
-      Fluttertoast.showToast(msg: "Erreur lors de la connexion");
-      if (e.response != null)
+      if (e.response!.statusCode == 401) {
+        showToast("Iditentifiants incorrects");
         print(e.response!.data);
-      else
+      }
+      else if (e.response != null) {
+        showToast("Erreur lors de la connexion");
+        print(e.response!.data);
+      }
+      else {
+        showToast("Erreur lors de la connexion");
         print(e.message);
+      }
     } finally {
-      isLoading = false;
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
