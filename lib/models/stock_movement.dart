@@ -9,7 +9,7 @@ class StockMovement {
   int productId;
   String movementType;
   int quantity;
-  DateTime movementDate;
+  String movementDate;
   String notes;
 
   StockMovement({
