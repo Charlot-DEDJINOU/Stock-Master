@@ -47,7 +47,7 @@ class _UpdateSupplierState extends State<UpdateSupplier> {
           widget.supplier.supplierId.toString(), data);
       print(response);
       showToast("Modification effectué avec succès");
-      Navigator.of(context).pushReplacement(
+      Navigator.of(context).push(
           MaterialPageRoute(builder: (context) => const ShowSuppliers()));
     } on DioException catch (e) {
       print(e);
@@ -61,7 +61,7 @@ class _UpdateSupplierState extends State<UpdateSupplier> {
         print(e.message);
       }
     } finally {
-        setState(() {
+      setState(() {
         isLoading = false;
       });
     }
@@ -159,7 +159,7 @@ class _UpdateSupplierState extends State<UpdateSupplier> {
                         "supplier_name": nameController.text,
                         "email": emailController.text,
                         "phone": phoneController.text,
-                        "supplier_id" : widget.supplier.supplierId
+                        "supplier_id": widget.supplier.supplierId
                       });
                     }
                   },

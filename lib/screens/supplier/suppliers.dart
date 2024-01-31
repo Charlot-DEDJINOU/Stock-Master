@@ -65,7 +65,7 @@ class _ShowSuppliersState extends State<ShowSuppliers> {
             margin: const EdgeInsetsDirectional.all(5.0),
             child: ListTile(
               onTap: () => {
-                Navigator.of(context).pushReplacement(
+                Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => UpdateSupplier(supplier: supplier)))
               },
               leading: const Icon(Icons.person),
@@ -108,7 +108,7 @@ class _ShowSuppliersState extends State<ShowSuppliers> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.brown,
         onPressed: () {
-          Navigator.of(context).pushReplacement(MaterialPageRoute(
+          Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => const CreateSupplier(),
           ));
         },

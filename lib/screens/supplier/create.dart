@@ -35,7 +35,7 @@ class _CreateSupplierState extends State<CreateSupplier> {
       nameController.text = "";
       emailController.text = "";
       phoneController.text = "";
-      Navigator.of(context).pushReplacement(
+      Navigator.of(context).push(
           MaterialPageRoute(builder: (context) => const ShowSuppliers()));
     } on DioException catch (e) {
       print(e);
