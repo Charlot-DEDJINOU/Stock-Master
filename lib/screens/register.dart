@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+import 'package:stock_master/layout/toast.dart';
 import 'package:stock_master/screens/login.dart';
 import 'package:stock_master/services/user.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -13,7 +13,7 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   final formKey = GlobalKey<FormState>();
-  final fullnameController = TextEditingController();
+  final usernameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool isLoading = false;
@@ -21,25 +21,33 @@ class _RegisterState extends State<Register> {
   UserService userService = UserService();
 
   register(data) async {
-    isLoading = true;
+    setState(() {
+      isLoading = true;
+    });
+
     try {
       var response = await userService.create(data);
       print(response);
-      Fluttertoast.showToast(msg: "Utilisateur créé avec succès");
+      showToast("Utilisateur créé avec succès");
       emailController.text = "";
-      fullnameController.text = "";
+      usernameController.text = "";
       passwordController.text = "";
-      Navigator.of(context).pushReplacement(
+
+      Navigator.of(context).push(
           MaterialPageRoute(builder: (context) => const Login()));
+          
     } on DioException catch (e) {
-      Fluttertoast.showToast(msg: "Erreur lors de l'inscription");
+      print(e.response);
+      showToast("Erreur lors de l'inscription");
       if (e.response != null) {
         print(e.response!.data);
       } else {
         print(e.message);
       }
     } finally {
-      isLoading = false;
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
@@ -49,8 +57,7 @@ class _RegisterState extends State<Register> {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(
-                'assets/images/register.png'),
+            image: AssetImage('assets/images/register.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -93,7 +100,7 @@ class _RegisterState extends State<Register> {
                     const SizedBox(height: 30.0),
                     TextFormField(
                         keyboardType: TextInputType.text,
-                        controller: fullnameController,
+                        controller: usernameController,
                         decoration: const InputDecoration(
                           labelText: "Nom d'utilisateur",
                           prefixIcon: Icon(Icons.person),
@@ -143,7 +150,8 @@ class _RegisterState extends State<Register> {
                       onPressed: () async {
                         if (formKey.currentState!.validate()) {
                           await register({
-                            "full_name": fullnameController.text,
+                            "username": usernameController.text,
+                            "full_name": "stock master",
                             "email": emailController.text,
                             "password": passwordController.text
                           });
