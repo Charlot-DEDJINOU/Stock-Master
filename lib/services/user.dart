@@ -1,3 +1,4 @@
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stock_master/models/authenticated_user.dart';
 import 'package:stock_master/api.dart';
 import 'package:dio/dio.dart';
@@ -15,5 +16,44 @@ class UserService {
     final response = await api.post('register', data: data);
 
     return User.fromJson(response.data);
+  }
+
+  Future<User> get(String id) async {
+    final pref = await SharedPreferences.getInstance();
+    String token = pref.getString("token") ?? "";
+
+    if (token != "") {
+      api.options.headers['AUTHORIZATION'] = 'Bearer $token';
+    }
+
+    final response = await api.get('users/$id');
+
+    return User.fromJson(response.data);
+  }
+
+  Future<User> update(String id, Map<String, dynamic> data) async {
+    final pref = await SharedPreferences.getInstance();
+    String token = pref.getString("token") ?? "";
+
+    if (token != "") {
+      api.options.headers['AUTHORIZATION'] = 'Bearer $token';
+    }
+
+    final response = await api.put('users/$id');
+
+    return User.fromJson(response.data);
+  }
+
+  Future<Map<String, dynamic>> updatePassword(Map<String, dynamic> data) async {
+    final pref = await SharedPreferences.getInstance();
+    String token = pref.getString("token") ?? "";
+
+    if (token != "") {
+      api.options.headers['AUTHORIZATION'] = 'Bearer $token';
+    }
+
+    final response = await api.post('password');
+
+    return response.data;
   }
 }
