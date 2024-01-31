@@ -6,6 +6,6 @@ void showToast(String message) {
     msg: message,
     backgroundColor: Colors.brown,
     textColor: Colors.white,
-    timeInSecForIosWeb: 50,
+    timeInSecForIosWeb: 3,
   );
 }

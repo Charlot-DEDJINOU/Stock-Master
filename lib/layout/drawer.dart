@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stock_master/screens/achat/create.dart';
 import 'package:stock_master/screens/category/categories.dart';
 import 'package:stock_master/screens/customer/customers.dart';
+import 'package:stock_master/screens/settings/setting.dart';
+import 'package:stock_master/screens/supplier/suppliers.dart';
+import 'package:stock_master/screens/vente/create.dart';
 
 class CustomAppDrawer extends StatefulWidget {
   const CustomAppDrawer({super.key});
@@ -37,8 +41,21 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
             decoration: const BoxDecoration(
               color: Color(0xFF02BB02),
             ),
-            child: Center(
-              child: Text(username, style: const TextStyle(color: Colors.white, fontSize: 30)),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                    'Stock Master',
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontStyle: FontStyle.italic,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                ),
+                const SizedBox(height: 10.0),
+                Text(username, style: const TextStyle(color: Colors.white, fontSize: 20)),
+              ]
             ),
           ),
           ListTile(
@@ -50,7 +67,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
               ],
             ),
             onTap: () {
-               Navigator.of(context).pushReplacement(MaterialPageRoute(
+               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => const ShowCustomers(),
               ));
             },
@@ -76,7 +93,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
               ],
             ),
             onTap: () {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
+              Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => const ShowCategories(),
               ));
             },
@@ -90,7 +107,9 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
               ],
             ),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const CreateSell(),
+              ));
             },
           ),
           ListTile(
@@ -102,7 +121,9 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
               ],
             ),
             onTap: () {
-              Navigator.pop(context);
+               Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const CreateBuy(),
+              ));
             },
           ),
           ListTile(
@@ -126,7 +147,9 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
               ],
             ),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const ShowSuppliers(),
+              ));
             },
           ),
           ListTile(
@@ -138,7 +161,9 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
               ],
             ),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const Setting(),
+              ));
             },
           ),
         ],

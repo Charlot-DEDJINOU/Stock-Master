@@ -20,7 +20,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
     return AppBar(
       title: Text(
         widget.title,
-        style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        style: const TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
       ),
       backgroundColor: const Color(0xFF02BB02),
       leading: Builder(
@@ -36,7 +36,15 @@ class _CustomAppBarState extends State<CustomAppBar> {
       actions: [
         IconButton(
           onPressed: () {
-            Navigator.of(context).pushReplacement(MaterialPageRoute(
+            if(Navigator.canPop(context)) {
+                Navigator.pop(context);
+              }
+          },
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+        ),
+         IconButton(
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => const About(),
             ));
           },

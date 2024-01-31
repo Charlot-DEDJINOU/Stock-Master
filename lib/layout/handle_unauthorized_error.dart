@@ -9,7 +9,7 @@ void handleUnauthorizedError(BuildContext context) async {
   
   showToast("Veuillez vous authentifier");
 
-  Navigator.of(context).pushReplacement(
+  Navigator.of(context).push(
     MaterialPageRoute(builder: (context) => const Login()),
   );
 }
