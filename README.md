@@ -4,4 +4,4 @@ Stock Master est une application mobile de gestion de stocks puissante et intuit
 
 ## Quelques captures d'écran de l'application
 
-![Capture d'écran de la page de connexion](Documentation/Maquette.pdf)
+[Capture d'écran de la page de connexion](Documentation/Maquette.pdf)
