@@ -1,16 +1,3 @@
-# stock_master
+# Application Mobile Stock Master
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Stock Master est une application mobile de gestion de stocks puissante et intuitive, conçue pour simplifier la gestion des stocks de produits. Avec Stock Master, vous pouvez gérer efficacement vos produits, suivre les mouvements de stock, gérer les clients et les fournisseurs, passer des commandes, et même prévoir les besoins en stock. Cette application est construite avec Flutter et FastAPI, offrant une expérience utilisateur fluide et une connectivité rapide aux données stockées dans une base de données PostgreSQL. Que vous soyez une petite entreprise ou une entreprise de taille moyenne, Stock Master vous permet de garder un contrôle total sur vos stocks, où que vous soyez.
